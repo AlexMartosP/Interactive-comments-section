@@ -1,0 +1,296 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.2;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+*::before,
+*::after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  background-color: hsl(228deg, 33%, 97%);
+  padding-block: 5rem;
+  font-family: "Rubik", sans-serif;
+}
+
+.container {
+  max-width: min(800px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.even-columns,
+.even-columns-sm {
+  display: flex;
+  gap: 1rem;
+}
+
+@media only screen and (min-width: 50em) {
+  .even-columns-sm {
+    flex-direction: column;
+  }
+}
+.text-clr-neutral-white {
+  color: hsl(0deg, 0%, 100%);
+}
+
+.text-clr-neutral-blue-600 {
+  color: hsl(212deg, 24%, 26%);
+}
+
+.text-clr-neutral-blue-300 {
+  color: hsl(211deg, 10%, 45%);
+}
+
+.text-clr-primary-blue-400 {
+  color: hsl(238deg, 40%, 52%);
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.fw-semi-bold {
+  font-weight: 500;
+}
+
+.fw-regular {
+  font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+button[data-type=primary] {
+  background-color: hsl(238deg, 40%, 52%);
+  color: hsl(0deg, 0%, 100%);
+  font-weight: 500;
+  border-radius: 0.5em;
+  padding: 1em 2em;
+}
+
+button[data-type=primary]:is(:hover, :focus) {
+  background-color: hsl(239deg, 57%, 85%);
+  color: hsl(0deg, 0%, 100%);
+}
+
+button[data-type=secondary] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background-color: transparent;
+  color: hsl(238deg, 40%, 52%);
+  font-weight: 500;
+}
+
+button[data-type=secondary]:is(:hover, :focus) {
+  color: hsl(239deg, 57%, 85%);
+}
+
+button[data-color=red] {
+  color: hsl(358deg, 79%, 66%);
+}
+
+button[data-color=red]:is(:hover, :focus) {
+  color: hsl(357deg, 100%, 86%);
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto repeat(2, auto);
+  grid-column-gap: 0px;
+  grid-row-gap: 1em;
+  background-color: hsl(0deg, 0%, 100%);
+  padding: 1em;
+  border-radius: 0.5em;
+  margin-top: 1em;
+}
+.comment .comment-meta {
+  grid-area: 1/1/2/3;
+  align-items: center;
+}
+.comment .comment-meta img {
+  max-width: 2.5em;
+  height: 2.5em;
+}
+.comment .comment-meta .current-user-tag {
+  background-color: hsl(238deg, 40%, 52%);
+  padding: 0.5em;
+  padding: 2px 5px;
+  font-size: 0.8125rem;
+  border-radius: 0.25em;
+}
+.comment .comment-body {
+  grid-area: 2/1/3/3;
+}
+.comment .vote-counter {
+  grid-area: 3/1/4/2;
+  align-items: center;
+  background-color: hsl(228deg, 33%, 97%);
+  border-radius: 0.5em;
+}
+.comment .vote-counter div {
+  cursor: pointer;
+}
+.comment .vote-counter div:first-of-type {
+  padding: 0.5em 0 0.5em 0.5em;
+}
+.comment .vote-counter div:last-of-type {
+  padding: 0.5em 0.5em 0.5em 0;
+}
+.comment .vote-counter svg {
+  vertical-align: middle;
+}
+.comment .vote-counter div:hover path {
+  fill: hsl(238deg, 40%, 52%);
+}
+.comment .comment-buttons {
+  grid-area: 3/2/4/3;
+  justify-self: flex-end;
+  align-self: center;
+}
+.comment .comment-buttons button:not(:last-of-type) {
+  margin-right: 1em;
+}
+@media only screen and (min-width: 50em) {
+  .comment {
+    grid-template-columns: auto repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 2em;
+  }
+  .comment .vote-counter {
+    grid-area: 1/1/3/2;
+    align-self: flex-start;
+  }
+  .comment .vote-counter div:first-of-type {
+    padding: 1em 1em 0 1em;
+  }
+  .comment .vote-counter div:last-of-type {
+    padding: 0 1em 1em 1em;
+  }
+  .comment .comment-meta {
+    grid-area: 1/2/2/4;
+  }
+  .comment .comment-buttons {
+    grid-area: 1/3/2/4;
+  }
+  .comment .comment-body {
+    grid-area: 2/2/3/4;
+  }
+}
+
+.replies-wrapper {
+  padding-left: 1em;
+  border-left: 2px solid hsl(223deg, 19%, 93%);
+}
+@media only screen and (min-width: 50em) {
+  .replies-wrapper {
+    padding-left: 2em;
+    margin-left: 2em;
+  }
+}
+
+.newComment-wrapper,
+.reply-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  grid-row-gap: 1em;
+  padding: 1em;
+  background-color: hsl(0deg, 0%, 100%);
+  margin-top: 1em;
+  border-radius: 0.5em;
+}
+.newComment-wrapper .new-comment-input,
+.reply-wrapper .new-comment-input {
+  grid-area: 1/1/2/3;
+  padding: 1em;
+  border: 1px solid hsl(228deg, 33%, 97%);
+  border-radius: 0.5em;
+  resize: none;
+}
+.newComment-wrapper .current-profile,
+.reply-wrapper .current-profile {
+  grid-area: 2/1/3/2;
+  max-width: 2.5em;
+  height: 2.5em;
+  align-self: center;
+}
+.newComment-wrapper .comment-submit,
+.reply-wrapper .comment-submit {
+  grid-area: 2/2/3/3;
+  justify-self: flex-end;
+  align-self: center;
+}
+@media only screen and (min-width: 50em) {
+  .newComment-wrapper,
+.reply-wrapper {
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 1em;
+  }
+  .newComment-wrapper .new-comment-input,
+.newComment-wrapper .current-profile,
+.newComment-wrapper .comment-submit,
+.reply-wrapper .new-comment-input,
+.reply-wrapper .current-profile,
+.reply-wrapper .comment-submit {
+    grid-area: auto;
+  }
+}/*# sourceMappingURL=main.css.map */
