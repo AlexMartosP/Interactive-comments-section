@@ -20,6 +20,18 @@ button[data-type='primary']:is(:hover, :focus) {
     color: var.$clr-neutral-white;
 }
 
+button[data-color='red'][data-type='primary'] {
+    background-color: var.$clr-primary-red-400;
+}
+
+button[data-color='red'][data-type='primary']:is(:hover, :focus) {
+    background-color: var.$clr-primary-red-100;
+}
+
+button[data-color='grey'][data-type='primary'] {
+    background-color: var.$clr-neutral-blue-300;
+}
+
 button[data-type='secondary'] {
     display: inline-flex;
     align-items: center;
@@ -33,12 +45,16 @@ button[data-type='secondary']:is(:hover, :focus) {
     color: var.$clr-primary-blue-100;
 }
 
-button[data-color='red'] {
+button[data-color='red'][data-type='secondary'] {
     color: var.$clr-primary-red-400;
 }
 
-button[data-color='red']:is(:hover, :focus) {
+button[data-color='red'][data-type='secondary']:is(:hover, :focus) {
     color: var.$clr-primary-red-100;
+}
+
+button[data-hidden] {
+    display: none;
 }
 
 // Single comment
@@ -73,10 +89,17 @@ button[data-color='red']:is(:hover, :focus) {
 
     .comment-body {
         grid-area: 2 / 1 / 3 / 3;
+        border: none;
+        resize: none;
+    }
+
+    .comment-body:focus {
+        padding: var.$spacing-300;
+        border-radius: var.$spacing-200;
     }
 
     .vote-counter {
-        grid-area: 3 / 1 / 4 / 2;
+        grid-area: 4 / 1 / 5 / 2;
         align-items: center;
         background-color: var.$clr-neutral-gray-100;
         border-radius: var.$spacing-200;
@@ -103,7 +126,7 @@ button[data-color='red']:is(:hover, :focus) {
     }
 
     .comment-buttons {
-        grid-area: 3 / 2 / 4 / 3;
+        grid-area: 4 / 2 / 5 / 3;
         justify-self: flex-end;
         align-self: center;
 
@@ -112,10 +135,16 @@ button[data-color='red']:is(:hover, :focus) {
         }
     }
 
+    .update-button {
+        grid-area: 3 / 2 / 4 / 3;
+        justify-self: flex-end;
+    }
+
     @media only screen and (min-width: 50em) {
         grid-template-columns: auto repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-rows: auto;
         grid-column-gap: var.$spacing-400;
+        padding: var.$spacing-400;
 
         .vote-counter {
             grid-area: 1 / 1 / 3 / 2;
@@ -141,6 +170,10 @@ button[data-color='red']:is(:hover, :focus) {
         .comment-body {
             grid-area: 2 / 2 / 3 / 4;
         }
+
+        .update-button {
+            grid-area: 3 / 3 / 4 / 4;
+        }
     }
 }
 
@@ -154,10 +187,21 @@ button[data-color='red']:is(:hover, :focus) {
     }
 }
 
+.reply-wrapper {
+    display: none;
+}
+
+.open {
+    display: grid;
+}
+
 // New comment
+.newComment-wrapper {
+    display: grid;
+}
+
 .newComment-wrapper,
 .reply-wrapper {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     grid-row-gap: var.$spacing-300;
@@ -197,4 +241,41 @@ button[data-color='red']:is(:hover, :focus) {
             grid-area: auto;
         }
     }
+}
+
+// Delete modal
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.371);
+
+    .modal-box {
+        $max-width: 400px;
+
+        background-color: var.$clr-neutral-white;
+        padding: var.$spacing-400;
+        border-radius: var.$spacing-200;
+        max-width: min($max-width, 100% - var.$spacing-400);
+        margin-inline: auto;
+
+        h3 {
+            font-size: 1.4em;
+        }
+
+        p {
+            padding-block: var.$spacing-300;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.modal-open {
+    display: flex;
 }

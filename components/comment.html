@@ -7,7 +7,7 @@
                     fill="#C5C6EF" />
             </svg>
         </div>
-        <span class="text-clr-primary-blue-400 fw-semi-bold" id=" votesCounter">{{voteCount}}</span>
+        <span class="text-clr-primary-blue-400 fw-semi-bold" id=" votesCounter">${comment.score}</span>
         <div>
             <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -17,10 +17,10 @@
         </div>
     </div>
     <div class="comment-meta | even-columns">
-        <img src="{{profileImage}}" alt="">
-        <p class="fw-semi-bold text-clr-neutral-blue-600">{{profileName}}</p>
-        <span class="text-clr-neutral-blue-300">{{postedAt}}</span>
+        <img src="${comment.user.image.png}" alt="">
+        <p class="fw-semi-bold text-clr-neutral-blue-600">${comment.user.username}</p>
+        <span class="text-clr-neutral-blue-300">${comment.createdAt}</span>
     </div>
     <div class="comment-buttons"></div>
-    <p class="comment-body | text-clr-neutral-blue-300">{{commentTexxt}}</p>
+    <p class="comment-body | text-clr-neutral-blue-300">${comment.content}</p>
 </div>

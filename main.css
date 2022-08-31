@@ -30,7 +30,7 @@ body {
 /* Set core body defaults */
 body {
   text-rendering: optimizeSpeed;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 /* A elements that don't have a class get default styles */
@@ -130,6 +130,18 @@ button[data-type=primary]:is(:hover, :focus) {
   color: hsl(0deg, 0%, 100%);
 }
 
+button[data-color=red][data-type=primary] {
+  background-color: hsl(358deg, 79%, 66%);
+}
+
+button[data-color=red][data-type=primary]:is(:hover, :focus) {
+  background-color: hsl(357deg, 100%, 86%);
+}
+
+button[data-color=grey][data-type=primary] {
+  background-color: hsl(211deg, 10%, 45%);
+}
+
 button[data-type=secondary] {
   display: inline-flex;
   align-items: center;
@@ -143,12 +155,16 @@ button[data-type=secondary]:is(:hover, :focus) {
   color: hsl(239deg, 57%, 85%);
 }
 
-button[data-color=red] {
+button[data-color=red][data-type=secondary] {
   color: hsl(358deg, 79%, 66%);
 }
 
-button[data-color=red]:is(:hover, :focus) {
+button[data-color=red][data-type=secondary]:is(:hover, :focus) {
   color: hsl(357deg, 100%, 86%);
+}
+
+button[data-hidden] {
+  display: none;
 }
 
 .comment {
@@ -179,9 +195,15 @@ button[data-color=red]:is(:hover, :focus) {
 }
 .comment .comment-body {
   grid-area: 2/1/3/3;
+  border: none;
+  resize: none;
+}
+.comment .comment-body:focus {
+  padding: 1em;
+  border-radius: 0.5em;
 }
 .comment .vote-counter {
-  grid-area: 3/1/4/2;
+  grid-area: 4/1/5/2;
   align-items: center;
   background-color: hsl(228deg, 33%, 97%);
   border-radius: 0.5em;
@@ -202,18 +224,23 @@ button[data-color=red]:is(:hover, :focus) {
   fill: hsl(238deg, 40%, 52%);
 }
 .comment .comment-buttons {
-  grid-area: 3/2/4/3;
+  grid-area: 4/2/5/3;
   justify-self: flex-end;
   align-self: center;
 }
 .comment .comment-buttons button:not(:last-of-type) {
   margin-right: 1em;
 }
+.comment .update-button {
+  grid-area: 3/2/4/3;
+  justify-self: flex-end;
+}
 @media only screen and (min-width: 50em) {
   .comment {
     grid-template-columns: auto repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: auto;
     grid-column-gap: 2em;
+    padding: 2em;
   }
   .comment .vote-counter {
     grid-area: 1/1/3/2;
@@ -234,6 +261,9 @@ button[data-color=red]:is(:hover, :focus) {
   .comment .comment-body {
     grid-area: 2/2/3/4;
   }
+  .comment .update-button {
+    grid-area: 3/3/4/4;
+  }
 }
 
 .replies-wrapper {
@@ -247,9 +277,20 @@ button[data-color=red]:is(:hover, :focus) {
   }
 }
 
+.reply-wrapper {
+  display: none;
+}
+
+.open {
+  display: grid;
+}
+
+.newComment-wrapper {
+  display: grid;
+}
+
 .newComment-wrapper,
 .reply-wrapper {
-  display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   grid-row-gap: 1em;
@@ -293,4 +334,34 @@ button[data-color=red]:is(:hover, :focus) {
 .reply-wrapper .comment-submit {
     grid-area: auto;
   }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.371);
+}
+.modal .modal-box {
+  background-color: hsl(0deg, 0%, 100%);
+  padding: 2em;
+  border-radius: 0.5em;
+  max-width: min(400px, 100% - 2em);
+  margin-inline: auto;
+}
+.modal .modal-box h3 {
+  font-size: 1.4em;
+}
+.modal .modal-box p {
+  padding-block: 1em;
+}
+.modal .modal-box .modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-open {
+  display: flex;
 }/*# sourceMappingURL=main.css.map */
